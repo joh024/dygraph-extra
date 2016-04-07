@@ -3,7 +3,13 @@
 A modified version of the original
 [dygraph-extra](http://cavorite.com/labs/js/dygraphs-export/)
 JavaScript library that adds the ability to export dygraph plots as a
-png image, among other things.
+png image, among other things. Intended to be used in
+[shiny](http://shiny.rstudio.com/) with [dygraphs for
+R](https://rstudio.github.io/dygraphs/), but `dygraph-extra.js` does
+work as a standalone.
+
+Refer to the [shiny-example](shiny-example/] for the actual files and
+an example of basic usage.
 
 Dependencies:
 - [jQuery](https://jquery.com/) (loaded by shiny automatically)
