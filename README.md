@@ -8,7 +8,7 @@ png image, among other things. Intended to be used in
 R](https://rstudio.github.io/dygraphs/), but `dygraph-extra.js` does
 work as a standalone.
 
-Refer to the [shiny-example](shiny-example/] for the actual files and
+Refer to the [shiny-example](shiny-example/) for the actual files and
 an example of basic usage.
 
 Dependencies:
