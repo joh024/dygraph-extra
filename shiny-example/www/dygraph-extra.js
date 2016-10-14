@@ -443,7 +443,8 @@ Dygraph.Export.drawAnnotes = function(dygraph, ctx, options){
                            bordercolor, backgroundcolor);
     
     var color = curdiv.css("color");
-    var font = Object.values(curdiv.css(fontsubs)).join(" ");
+    var fontall = curdiv.css(fontsubs);
+    var font = Object.keys(fontall).map(function(x){return fontall[x];}).join(" ");
     var text = curdiv.text();
     
     ctx.fillStyle = color;
