@@ -261,12 +261,8 @@ Dygraph.Export.drawPlot = function (canvas, dygraph, options) {
             options.axisLabelFont, options.axisLabelFontColor, "center");
     }
 
-
-    for (i = 0; i < dygraph.layout_.annotations.length; i++) {
-        Dygraph.Export.putLabelAnn(ctx, dygraph.layout_.annotations[i], options, 
-                options.labelFont, options.labelColor);
-    }
-    
+    // Annotations
+    Dygraph.Export.drawAnnotes(dygraph, ctx, options);
 };
 
 /**
@@ -426,6 +422,49 @@ Dygraph.Export.drawLegend = function (canvas, dygraph, options) {
         }
       }
     }
+};
+
+/* Annote functions */
+
+Dygraph.Export.drawAnnotes = function(dygraph, ctx, options){
+  var annotedivs = $(dygraph.graphDiv).find(".dygraphDefaultAnnotation");
+  var fontsubs = ["style", "variant", "weight", "size", "family"].map(function(x){return "font-" + x;});
+  
+  for(i = 0; i < annotedivs.length; i++){
+    var curdiv = $(annotedivs[i]);
+    var pos = curdiv.position();
+    var width = curdiv.width();
+    var height = curdiv.height();
+    
+    /* Assume border color is same all around */
+    var bordercolor = curdiv.css("borderTopColor");
+    var backgroundcolor = curdiv.css("backgroundColor");
+    Dygraph.Export.drawBox(ctx, pos.left, pos.top, width, height,
+                           bordercolor, backgroundcolor);
+    
+    var color = curdiv.css("color");
+    var font = Object.values(curdiv.css(fontsubs)).join(" ");
+    var text = curdiv.text();
+    
+    ctx.fillStyle = color;
+    ctx.font = font;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(text, pos.left + width/2, pos.top + height/2);
+  }
+};
+
+Dygraph.Export.drawBox = function(ctx, x, y, width, height, stroke, fill){
+  ctx.beginPath();
+  ctx.rect(x, y, width, height);
+  if(stroke){
+    ctx.strokeStyle = stroke;
+    ctx.stroke();
+  }
+  if(fill){
+    ctx.fillStyle = fill;
+    ctx.fill();
+  }
 };
 
 /**
