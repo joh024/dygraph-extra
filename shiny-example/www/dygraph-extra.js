@@ -574,10 +574,12 @@ Dygraph.Export.AutoClear = function(timeout){
    if(typeof(timeout) === 'undefined') timeout = 500;
    $(document).on("mouseleave", "div.dygraphs", function(){
       var curdy = Dygraph.Export.Vars[this.id];
-      window.setTimeout(function(){
-         curdy.clearSelection();
-         curdy.clearSelection();
-         curdy.clearSelection();
-      }, timeout);
+      if(curdy){
+         window.setTimeout(function(){
+            curdy.clearSelection();
+            curdy.clearSelection();
+            curdy.clearSelection();
+         }, timeout);
+      }
    });
 };
