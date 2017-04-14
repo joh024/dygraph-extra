@@ -29,7 +29,8 @@ dyDownload =
   ## If usetitle is TRUE, the filename will use the dygraph's main-title
   ##             if FALSE, the filename will be the id
   ## If asbutton is TRUE, the link will be styled as a nice looking button
-  function(id, label, elid = NULL, usetitle = TRUE, asbutton = FALSE){
+  ## Class allows user to define the button class or other css. Defaults to btn-default.
+  function(id, label, elid = NULL, usetitle = TRUE, asbutton = FALSE, class= "btn-default"){
     enc = function(x){
       if(is.logical(x)) ifelse(x, "true", "false")
       else encodeString(x, quote = '"')
@@ -44,7 +45,7 @@ dyDownload =
                  paste0("Dygraph.Export.DownloadByID(",
                         encid, ", ", enc(usetitle), "); return false;"))
     if(asbutton){
-      out$attribs$class = "btn btn-default download-link"
+      out$attribs$class = paste("btn", class, "download-link")
       out$children = tagList(icon("download"), out$children)
     }
     out
