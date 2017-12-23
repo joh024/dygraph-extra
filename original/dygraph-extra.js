@@ -149,17 +149,31 @@ Dygraph.Export.drawPlot = function (canvas, dygraph, options) {
     if (labelsPluginDict) {
         var labelsPlugin = labelsPluginDict.plugin;
 
-        Dygraph.Export.putLabel(ctx, labelsPlugin.title_div_, options,
-            options.titleFont, options.titleFontColor);
+        if(labelsPlugin.title_div_ != undefined)
+        {
+            labelsPlugin.title_div_.style.textAlign = "center"
+            Dygraph.Export.putLabel(ctx, labelsPlugin.title_div_, options,
+                options.titleFont, options.titleFontColor);
+        }
 
-        Dygraph.Export.putLabel(ctx, labelsPlugin.xlabel_div_, options,
-            options.axisLabelFont, options.axisLabelFontColor);
+        if(labelsPlugin.xlabel_div_ != undefined)
+        {
+            labelsPlugin.xlabel_div_.style.textAlign = "center"
+            Dygraph.Export.putLabel(ctx, labelsPlugin.xlabel_div_, options,
+                options.axisLabelFont, options.axisLabelFontColor);
+        }
 
-        Dygraph.Export.putVerticalLabelY1(ctx, labelsPlugin.ylabel_div_, options,
-            options.axisLabelFont, options.axisLabelFontColor, "center");
+        if(labelsPlugin.ylabel_div_ != undefined)
+        {
+            Dygraph.Export.putVerticalLabelY1(ctx, labelsPlugin.ylabel_div_, options,
+                options.axisLabelFont, options.axisLabelFontColor, "center");
+        }
 
-        Dygraph.Export.putVerticalLabelY2(ctx, labelsPlugin.y2label_div_, options,
-            options.axisLabelFont, options.axisLabelFontColor, "center");
+        if(labelsPlugin.y2label_div_ != undefined)
+        {
+            Dygraph.Export.putVerticalLabelY2(ctx, labelsPlugin.y2label_div_, options,
+                options.axisLabelFont, options.axisLabelFontColor, "center");
+        }
     }
 
 
